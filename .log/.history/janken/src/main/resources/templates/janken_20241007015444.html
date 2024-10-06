@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Janken Game</title>
+</head>
+<body>
+    <h1>Janken GAME!</h1>
+    <p th:if="${username != null && username != ''}">Hi <span th:text="${username}">ユーザ名</span></p>
+    <p th:if="${username == null || username == ''}">ユーザ名が入力されていません。</p>
+
+    <a th:href="@{/jankenBattle(username=${username}, playerHand='Gu')}">ぐー</a> 
+    <a th:href="@{/jankenBattle(username=${username}, playerHand='Tyoki')}">ちょき</a> 
+    <a th:href="@{/jankenBattle(username=${username}, playerHand='Pa')}">ぱー</a>
+
+    <h2>結果:</h2>
+    <p th:if="${playerHand != null}">あなたの手 <span th:text="${playerHand}">手</span></p>
+    <p th:if="${cpuHand != null}">相手の手 <span th:text="${cpuHand}">手</span></p>
+    <p th:if="${result != null}">結果 <span th:text="${result}">結果</span></p>
+</body>
+</html>
