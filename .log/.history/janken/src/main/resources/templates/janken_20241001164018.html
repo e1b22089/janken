@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Janken Game</title>
+</head>
+<body>
+    <h1>Janken GAME!</h1>
+    <p th:if="${username != null}">Hi <span th:text="${username}">ユーザ名</span></p>
+    <p th:if="${username == null}">ユーザ名が入力されていません。</p>
+</body>
+</html>
