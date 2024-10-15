@@ -1,20 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Janken Game</title>
+  <meta charset="UTF-8">
+  <title>Janken Game</title>
 </head>
+
 <body>
-    <h1>Janken GAME!</h1>
-    <p th:if="${username != null && username != '' && playerHand == null}">Hi <span th:text="${username}">ユーザ名</span></p>
-    <p th:if="${username == null || username == ''}">ユーザ名が入力されていません。</p>
+  <h1>Janken GAME!</h1>
 
-    <a th:href="@{/jankenBattle(username=${username}, playerHand='Gu')}">ぐー</a> 
-    <a th:href="@{/jankenBattle(username=${username}, playerHand='Tyoki')}">ちょき</a> 
-    <a th:href="@{/jankenBattle(username=${username}, playerHand='Pa')}">ぱー</a>
+  <p>Hi <span th:text="${username}">ユーザ名</span></p>
 
-    <p th:if="${playerHand != null}">あなたの手 <span th:text="${playerHand}">手</span></p>
-    <p th:if="${cpuHand != null}">相手の手 <span th:text="${cpuHand}">手</span></p>
-    <p th:if="${result != null}">結果 <span th:text="${result}">結果</span></p>
+  <!-- usernameをURLに含めて送信するように修正 -->
+  <a th:href="@{/jankenBattle(playerHand='Gu', username=${username})}">ぐー</a>
+  <a th:href="@{/jankenBattle(playerHand='Tyoki', username=${username})}">ちょき</a>
+  <a th:href="@{/jankenBattle(playerHand='Pa', username=${username})}">ぱー</a>
+
+  <p th:if="${playerHand != null}">あなたの手 <span th:text="${playerHand}">手</span></p>
+  <p th:if="${cpuHand != null}">相手の手 <span th:text="${cpuHand}">手</span></p>
+  <p th:if="${result != null}">結果 <span th:text="${result}">結果</span></p>
+
+  <h2>エントリーしているユーザ</h2>
+  <ul>
+    <li th:each="user : ${users}">
+      <span th:text="${user}"></span>
+    </li>
+  </ul>
+
+  <a href="/logout">ログアウト</a>
 </body>
+
 </html>
